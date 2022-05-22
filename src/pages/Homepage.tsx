@@ -20,7 +20,9 @@ const Homepage: React.FC = () => {
       >
         <Navbar />
         <div className="flex flex-col gap-4 justify-center items-center min-h-[55vh]">
-          <h1 className="text-center text-4xl mb-4">Find your dreams house</h1>
+          <h1 className="text-center text-4xl mb-4">
+            Find your dreams house today
+          </h1>
           <SearchHouseForm />
         </div>
       </div>
@@ -36,8 +38,8 @@ const Homepage: React.FC = () => {
             voluptatum quibusdam iusto assumenda vel recusandae.
           </p>
           <div className="flex gap-4 mt-8 items-center">
-            <ArrowLeftIcon className="p-4 w-14 h-14 bg-blue-600 text-white cursor-pointer" />
-            <ArrowRightIcon className="p-4 w-12 h-12 bg-blue-600 text-white cursor-pointer" />
+            <ArrowLeftIcon className="p-4 w-14 h-14 bg-blue-600 text-white cursor-pointer hover:bg-blue-700 hover:scale-105 transform transition" />
+            <ArrowRightIcon className="p-4 w-12 h-12 bg-blue-600 text-white cursor-pointer hover:bg-blue-700 hover:scale-105 transform transition" />
           </div>
         </div>
 
