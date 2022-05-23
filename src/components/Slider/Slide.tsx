@@ -22,10 +22,10 @@ const Slide: React.FC<Props> = ({
   numberOfGarages,
 }) => {
   return (
-    <div className="relative w-full flex-slider overflow-hidden group hover:cursor-pointer">
+    <div className="relative min-w-[20rem] mx-4 pointer-events-none overflow-hidden group hover:cursor-pointer">
       <img src={image} alt="" className="object-cover w-full h-full black" />
 
-      <div className="absolute bottom-[-100%] bg-[rgba(0,0,0,0.75)] text-gray-400 p-4 group-hover:bottom-0 transition-all duration-500">
+      <div className="absolute bottom-[-100%] bg-[rgba(0,0,0,0.75)]  text-gray-400 p-4 group-hover:bottom-0 transition-all duration-500">
         <h3 className="font-bold text-white text-xl">{name}</h3>
         <h1 className="text-blue-600 font-bold text-xl">${price}</h1>
         <div className="grid grid-cols-4 gap-3 p-2 py-4 my-8 border-t border-t-gray-400 text-white">

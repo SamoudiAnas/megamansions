@@ -3,7 +3,7 @@ import Navbar from "../components/Navbar";
 
 //images
 import heroBG from "../assets/hero.jpg";
-import SliderContainer from "../components/SliderContainer";
+import SliderContainer from "../components/Slider/SliderContainer";
 import { ArrowLeftIcon, ArrowRightIcon } from "@heroicons/react/outline";
 
 const Homepage: React.FC = () => {

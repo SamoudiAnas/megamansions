@@ -5,15 +5,24 @@ import {
   MOVE_SLIDER_BACKWARD,
 } from "./action-types";
 
-export const MoveSliderForward = () => (dispatch: Dispatch<SliderDispatch>) => {
-  dispatch({
-    type: MOVE_SLIDER_FORWARD,
-  });
-};
+export const MoveSliderForward =
+  (max: number) => (dispatch: Dispatch<SliderDispatch>) => {
+    dispatch({
+      type: MOVE_SLIDER_FORWARD,
+      payload: {
+        index: 1,
+        max: max,
+      },
+    });
+  };
 
 export const MoveSliderBackward =
-  () => (dispatch: Dispatch<SliderDispatch>) => {
+  (max: number) => (dispatch: Dispatch<SliderDispatch>) => {
     dispatch({
       type: MOVE_SLIDER_BACKWARD,
+      payload: {
+        index: 1,
+        max: max,
+      },
     });
   };

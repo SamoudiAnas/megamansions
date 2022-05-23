@@ -1,34 +1,38 @@
+import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 
 //images
-import house1IMG from "../assets/house1.jpg";
-import house2IMG from "../assets/house2.jpg";
-import house3IMG from "../assets/house3.jpg";
-import house4IMG from "../assets/house4.jpg";
-import Slide from "./Slider/Slide";
+import house1IMG from "../../assets/house1.jpg";
+import house2IMG from "../../assets/house2.jpg";
+import house3IMG from "../../assets/house3.jpg";
+import house4IMG from "../../assets/house4.jpg";
+import Slide from "./Slide";
 
 const SliderContainer: React.FC = () => {
+  const [innerCarouselWidth, setInnerCarouselWidth] = useState<number>(0);
   const [marginLeftPercentage, setmarginLeftPercentage] = useState<number>(0);
   const MARGIN_LEFT_PERCENTAGE = -40; // width of image "35%" + gap between images "5%"
 
-  let sliderContainerRef = useRef<HTMLDivElement | null>(null);
+  let carouselRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    if (sliderContainerRef) {
-      let slidesCount = sliderContainerRef.current?.childNodes.length;
-      console.log(slidesCount);
+    if (carouselRef.current) {
+      setInnerCarouselWidth(
+        carouselRef.current?.scrollWidth - carouselRef.current?.offsetWidth
+      );
     }
   }, []);
 
   return (
-    <div className="relative min-h-[25rem] overflow-hidden">
-      <div
-        className={
-          "absolute top-0 left-[-140%] flex w-full h-full gap-[5%] ml-[-" +
-          marginLeftPercentage +
-          "%]"
-        }
-        ref={sliderContainerRef}
+    <motion.div
+      className="relative min-h-[25rem] overflow-hidden"
+      whileDrag={{ cursor: "grabbing" }}
+      ref={carouselRef}
+    >
+      <motion.div
+        drag="x"
+        dragConstraints={{ left: 0, right: 0 }}
+        className="flex w-full h-full  cursor-grab"
       >
         <Slide
           image={house1IMG}
@@ -78,8 +82,8 @@ const SliderContainer: React.FC = () => {
           numberOfBaths={2}
           numberOfGarages={1}
         />{" "}
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 };
 

@@ -3,4 +3,8 @@ export const MOVE_SLIDER_BACKWARD = "MOVE_SLIDER_BACKWARD";
 
 export interface SliderDispatch {
   type: string;
+  payload: {
+    index: number;
+    max: number;
+  };
 }
