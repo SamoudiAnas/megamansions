@@ -1,5 +1,3 @@
-//images
-import house1IMG from "../../assets/house1.jpg";
 //icons
 import { BiBuildingHouse, BiBed, BiBath } from "react-icons/bi";
 import { GiHomeGarage } from "react-icons/gi";
@@ -22,7 +20,7 @@ const Slide: React.FC<Props> = ({
   numberOfGarages,
 }) => {
   return (
-    <div className="relative min-w-[20rem] mx-4 pointer-events-none overflow-hidden group hover:cursor-pointer">
+    <div className="relative min-w-[20rem] mx-4  overflow-hidden group hover:cursor-pointer">
       <img src={image} alt="" className="object-cover w-full h-full black" />
 
       <div className="absolute bottom-[-100%] bg-[rgba(0,0,0,0.75)]  text-gray-400 p-4 group-hover:bottom-0 transition-all duration-500">

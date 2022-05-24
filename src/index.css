@@ -13,3 +13,11 @@
 .container {
   @apply max-w-[1170px] mx-auto;
 }
+
+/*=====================
+MAP STYLING
+=====================*/
+
+.leaflet-container {
+  @apply min-h-[20rem] w-full;
+}

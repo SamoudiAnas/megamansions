@@ -1,20 +1,23 @@
 import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
-
-//images
-import house1IMG from "../../assets/house1.jpg";
-import house2IMG from "../../assets/house2.jpg";
-import house3IMG from "../../assets/house3.jpg";
-import house4IMG from "../../assets/house4.jpg";
 import Slide from "./Slide";
+import { TOP_HOUSES } from "../../constants/topHouses";
 
 const SliderContainer: React.FC = () => {
   const [innerCarouselWidth, setInnerCarouselWidth] = useState<number>(0);
-  const [marginLeftPercentage, setmarginLeftPercentage] = useState<number>(0);
-  const MARGIN_LEFT_PERCENTAGE = -40; // width of image "35%" + gap between images "5%"
 
+  /**
+   * carouselRef is used to determine the width of the slider containing all the slides
+   * so we can set a range for the slider for the user not to exceed while using the grab motion
+   */
   let carouselRef = useRef<HTMLDivElement | null>(null);
 
+  /**
+   * This useEffect hook runs on first load to determine the width for the slider containing all slides.
+   * carouselRef.current?.scrollWidth: gets the width of the slider container until we get the slides out of screen when grabbing
+   * carouselRef.current?.offsetWidth: gets the width of what is showing on the slider container
+   * we subtract to get the width of all slides (plus the margins and gap)
+   */
   useEffect(() => {
     if (carouselRef.current) {
       setInnerCarouselWidth(
@@ -25,63 +28,26 @@ const SliderContainer: React.FC = () => {
 
   return (
     <motion.div
-      className="relative min-h-[25rem] overflow-hidden"
+      className="relative min-h-[25rem] overflow-hidden cursor-grab "
       whileDrag={{ cursor: "grabbing" }}
       ref={carouselRef}
     >
       <motion.div
         drag="x"
-        dragConstraints={{ left: 0, right: 0 }}
-        className="flex w-full h-full  cursor-grab"
+        dragConstraints={{ left: -innerCarouselWidth, right: 0 }}
+        className={"absolute flex min-w-full h-full"}
       >
-        <Slide
-          image={house1IMG}
-          name="Ankra House"
-          price={259000}
-          numberOfBeds={4}
-          numberOfBaths={2}
-          numberOfGarages={1}
-        />
-        <Slide
-          image={house2IMG}
-          name="Ankra House"
-          price={259000}
-          numberOfBeds={4}
-          numberOfBaths={2}
-          numberOfGarages={1}
-        />
-        <Slide
-          image={house3IMG}
-          name="Ankra House"
-          price={259000}
-          numberOfBeds={4}
-          numberOfBaths={2}
-          numberOfGarages={1}
-        />
-        <Slide
-          image={house4IMG}
-          name="Ankra House"
-          price={259000}
-          numberOfBeds={4}
-          numberOfBaths={2}
-          numberOfGarages={1}
-        />{" "}
-        <Slide
-          image={house4IMG}
-          name="Ankra House"
-          price={259000}
-          numberOfBeds={4}
-          numberOfBaths={2}
-          numberOfGarages={1}
-        />
-        <Slide
-          image={house4IMG}
-          name="Ankra House"
-          price={259000}
-          numberOfBeds={4}
-          numberOfBaths={2}
-          numberOfGarages={1}
-        />{" "}
+        {TOP_HOUSES.map((house, index) => (
+          <Slide
+            key={index}
+            image={house.image}
+            name={house.name}
+            price={house.price}
+            numberOfBeds={house.numberOfBeds}
+            numberOfBaths={house.numberOfBaths}
+            numberOfGarages={house.numberOfGarages}
+          />
+        ))}
       </motion.div>
     </motion.div>
   );
