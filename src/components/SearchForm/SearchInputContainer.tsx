@@ -3,22 +3,22 @@ import SearchInput from "./SearchInput";
 import SearchSuggestions from "./SearchSuggestions";
 
 interface Props {
-  type?: string;
-  placeholder?: string;
+  type: string;
+  placeholder: string;
   className?: string;
   state: string;
   setState: Dispatch<SetStateAction<string>>;
 }
 
-function SearchInputContainer({
+const SearchInputContainer: React.FC<Props> = ({
   type,
   placeholder,
   className,
   state,
   setState,
-}: Props) {
+}) => {
   return (
-    <div className="relative">
+    <div className="relative flex-searchForm">
       <SearchInput
         type={type}
         placeholder={placeholder}
@@ -29,6 +29,6 @@ function SearchInputContainer({
       <SearchSuggestions state={state} setState={setState} />
     </div>
   );
-}
+};
 
 export default SearchInputContainer;

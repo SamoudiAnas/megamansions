@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction } from "react";
 
 interface Props {
-  type?: string;
+  type: string;
   placeholder?: string;
   className?: string;
   state: string;
@@ -27,8 +27,7 @@ const SearchInput: React.FC<Props> = (props) => {
       value={props.state}
       onChange={inputHandler}
       className={
-        "flex-searchForm  h-16  px-8 py-2 bg-white text-gray-500  " +
-        additionalClasses
+        "h-16 w-full px-8 py-2 bg-white text-gray-500  " + additionalClasses
       }
     />
   );

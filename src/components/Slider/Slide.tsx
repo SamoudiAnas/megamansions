@@ -2,28 +2,34 @@
 import { BiBuildingHouse, BiBed, BiBath } from "react-icons/bi";
 import { GiHomeGarage } from "react-icons/gi";
 
-interface Props {
+interface HouseDataProps {
   image: string;
   name: string;
   price: number;
   numberOfBeds: number;
   numberOfBaths: number;
   numberOfGarages: number;
+  extraClassNames?: string;
 }
 
-const Slide: React.FC<Props> = ({
+const Slide: React.FC<HouseDataProps> = ({
   image,
   name,
   price,
   numberOfBeds,
   numberOfBaths,
   numberOfGarages,
+  extraClassNames, //for adding extra styling classNames
 }) => {
   return (
-    <div className="relative min-w-[20rem] mx-4  overflow-hidden group hover:cursor-pointer">
+    <div
+      className={
+        "relative overflow-hidden group hover:cursor-pointer " + extraClassNames
+      }
+    >
       <img src={image} alt="" className="object-cover w-full h-full black" />
 
-      <div className="absolute bottom-[-100%] bg-[rgba(0,0,0,0.75)]  text-gray-400 p-4 group-hover:bottom-0 transition-all duration-500">
+      <div className="absolute bottom-[-100%] bg-[rgba(0,0,0,0.75)] w-full text-gray-400 p-4 group-hover:bottom-0 transition-all duration-500">
         <h3 className="font-bold text-white text-xl">{name}</h3>
         <h1 className="text-blue-600 font-bold text-xl">${price}</h1>
         <div className="grid grid-cols-4 gap-3 p-2 py-4 my-8 border-t border-t-gray-400 text-white">

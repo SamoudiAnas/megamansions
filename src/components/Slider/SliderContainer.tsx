@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion, MotionValue, PanInfo, useMotionValue } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import Slide from "./Slide";
 import { TOP_HOUSES } from "../../constants/topHouses";
@@ -11,7 +11,6 @@ const SliderContainer: React.FC = () => {
    * so we can set a range for the slider for the user not to exceed while using the grab motion
    */
   let carouselRef = useRef<HTMLDivElement | null>(null);
-
   /**
    * This useEffect hook runs on first load to determine the width for the slider containing all slides.
    * carouselRef.current?.scrollWidth: gets the width of the slider container until we get the slides out of screen when grabbing
@@ -46,6 +45,7 @@ const SliderContainer: React.FC = () => {
             numberOfBeds={house.numberOfBeds}
             numberOfBaths={house.numberOfBaths}
             numberOfGarages={house.numberOfGarages}
+            extraClassNames="min-w-[20rem] mr-8"
           />
         ))}
       </motion.div>

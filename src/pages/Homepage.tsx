@@ -4,7 +4,11 @@ import Navbar from "../components/Navbar";
 import { MapContainer, TileLayer, Popup, Marker } from "react-leaflet";
 //images
 import heroBG from "../assets/hero.jpg";
+import { ArrowLeftIcon, ArrowRightIcon } from "@heroicons/react/outline";
 import { LatLngTuple } from "leaflet";
+import { TOP_HOUSES } from "../constants/topHouses";
+import Slide from "../components/Slider/Slide";
+import Footer from "../components/Footer";
 
 const Homepage: React.FC = () => {
   const position: LatLngTuple = [51.505, -0.09];
@@ -39,9 +43,10 @@ const Homepage: React.FC = () => {
             Dignissimos provident, deserunt inventore natus tenetur quasi
             voluptatum quibusdam iusto assumenda vel recusandae.
           </p>
-          <button className=" mt-8 py-4 px-10  bg-blue-600 text-white cursor-pointer hover:bg-blue-700 hover:scale-105 transform transition">
-            More Info
-          </button>
+          <div className="flex gap-4 mt-8 items-center">
+            <ArrowLeftIcon className="p-4 w-14 h-14 bg-blue-600 text-white cursor-pointer hover:bg-blue-700 hover:scale-105 transform transition" />
+            <ArrowRightIcon className="p-4 w-12 h-12 bg-blue-600 text-white cursor-pointer hover:bg-blue-700 hover:scale-105 transform transition" />
+          </div>
         </div>
 
         <SliderContainer />
@@ -69,6 +74,33 @@ const Homepage: React.FC = () => {
           </Marker>
         </MapContainer>
       </div>
+
+      <div className=" relative bg-gray-100 py-16">
+        <div className="container">
+          <h1 className="font-extrabold text-center text-3xl mb-8">
+            Browse Houses
+          </h1>
+          <div className="grid grid-cols-default  gap-10">
+            {TOP_HOUSES.map((house, index) => (
+              <Slide
+                key={index}
+                image={house.image}
+                name={house.name}
+                price={house.price}
+                numberOfBeds={house.numberOfBeds}
+                numberOfBaths={house.numberOfBaths}
+                numberOfGarages={house.numberOfGarages}
+              />
+            ))}
+          </div>
+
+          <button className="block mx-auto mt-16 py-4 px-16  bg-blue-600 text-white cursor-pointer hover:bg-blue-700 hover:scale-105 transform transition">
+            See All
+          </button>
+        </div>
+      </div>
+
+      <Footer />
     </div>
   );
 };
